@@ -16,6 +16,10 @@ namespace Sistema_de_contabilidad_Open_Source.Models.ViewModels
         [NotMapped]
         public List<tipoCuentas> lst1 { get; set; }
         //
+        //
+        [NotMapped]
+        public List<cuentasContables> lstCuentaMayor { get; set; }
+        //
         public bool permiteTrans { get; set; }
         public string nivel { get; set; }
         public int cuentaMayor { get; set; }

@@ -30,7 +30,8 @@ namespace Sistema_de_contabilidad_Open_Source.Controllers
                            balance = d.balance,
                            estado = d.estado,
                            //
-                           lst1 = db.tipoCuentas.ToList<tipoCuentas>()
+                           lst1 = db.tipoCuentas.ToList<tipoCuentas>(),
+                           lstCuentaMayor = db.cuentasContables.ToList<cuentasContables>()
                            //
             }).ToList();
             }
@@ -76,10 +77,7 @@ namespace Sistema_de_contabilidad_Open_Source.Controllers
                         ocuentasContables.cuentaMayor = model.cuentaMayor;
                         ocuentasContables.balance = model.balance;
                         ocuentasContables.estado = model.estado;
-                        //
-                        model.lst1 = db.tipoCuentas.ToList<tipoCuentas>();
-                        model.lstCuentaMayor = db.cuentasContables.ToList<cuentasContables>();
-                        //
+                        
                         //Guardar
                         db.cuentasContables.Add(ocuentasContables);
                         db.SaveChanges();
@@ -88,7 +86,14 @@ namespace Sistema_de_contabilidad_Open_Source.Controllers
                     return Redirect("/cuentasContables");
 
                 }
-               
+                //
+                using (Segundo_Parcial_Integracion_con_Open_SourceEntities db = new Segundo_Parcial_Integracion_con_Open_SourceEntities())
+                {
+                    model.lst1 = db.tipoCuentas.ToList<tipoCuentas>();
+                    model.lstCuentaMayor = db.cuentasContables.ToList<cuentasContables>();
+                }
+                //
+
 
                 return View(model);
 
@@ -142,18 +147,22 @@ namespace Sistema_de_contabilidad_Open_Source.Controllers
                         ocuentasContables.cuentaMayor = model.cuentaMayor;
                         ocuentasContables.balance = model.balance;
                         ocuentasContables.estado = model.estado;
-                        //
-                        model.lst1 = db.tipoCuentas.ToList<tipoCuentas>();
-                        model.lstCuentaMayor = db.cuentasContables.ToList<cuentasContables>();
-                        //
+                       
 
                         db.Entry(ocuentasContables).State = System.Data.Entity.EntityState.Modified;
                         db.SaveChanges();
                     };
-
+                   
                     return Redirect("/cuentasContables");
 
                 }
+                //
+                using (Segundo_Parcial_Integracion_con_Open_SourceEntities db = new Segundo_Parcial_Integracion_con_Open_SourceEntities())
+                {
+                    model.lst1 = db.tipoCuentas.ToList<tipoCuentas>();
+                    model.lstCuentaMayor = db.cuentasContables.ToList<cuentasContables>();
+                }
+                //
                 return View(model);
 
             }
