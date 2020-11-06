@@ -86,7 +86,7 @@ namespace Sistema_de_contabilidad_Open_Source.Controllers
                     return Redirect("/cuentasContables");
 
                 }
-                //
+                //Esto carga nuevamente los dropdownlist para que no aparezca un error de nulo
                 using (Segundo_Parcial_Integracion_con_Open_SourceEntities db = new Segundo_Parcial_Integracion_con_Open_SourceEntities())
                 {
                     model.lst1 = db.tipoCuentas.ToList<tipoCuentas>();
@@ -120,7 +120,7 @@ namespace Sistema_de_contabilidad_Open_Source.Controllers
                 model.balance = ocuentasContables.balance;
                 model.estado = ocuentasContables.estado;
                 model.ID = ocuentasContables.cuentasContablesID;
-                //
+                //Esto carga nuevamente los dropdownlist para que no aparezca un error de nulo
                 model.lst1 = db.tipoCuentas.ToList<tipoCuentas>();
                 model.lstCuentaMayor = db.cuentasContables.ToList<cuentasContables>();
                 //
@@ -156,7 +156,7 @@ namespace Sistema_de_contabilidad_Open_Source.Controllers
                     return Redirect("/cuentasContables");
 
                 }
-                //
+                //Esto carga nuevamente los dropdownlist para que no aparezca un error de nulo
                 using (Segundo_Parcial_Integracion_con_Open_SourceEntities db = new Segundo_Parcial_Integracion_con_Open_SourceEntities())
                 {
                     model.lst1 = db.tipoCuentas.ToList<tipoCuentas>();
