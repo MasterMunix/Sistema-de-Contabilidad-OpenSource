@@ -1,0 +1,33 @@
+﻿@model Sistema_de_contabilidad_Open_Source.Models.ViewModels.cuentasAuxiliaresViewModel
+@{
+    ViewBag.Title = "Editar cuenta auxiliar";
+}
+
+<h2>@ViewBag.Title</h2>
+
+
+@using (Html.BeginForm("Editar", "cuentasAuxiliares", FormMethod.Post))
+{<div class="row">
+        <div class="col-md-12">
+            @Html.HiddenFor(d => d.ID)
+            <div>
+                @Html.LabelFor(d => d.descripcion)
+                @Html.TextBoxFor(d => d.descripcion, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.descripcion, null, new { @style = "color:red" })
+                <br />
+            </div>
+            
+            <div>
+                @Html.LabelFor(d => d.estado)
+                @Html.CheckBoxFor(d => d.estado)
+                @Html.ValidationMessageFor(d => d.estado, null, new { @style = "color:red" })
+
+                <br />
+            </div>
+        </div>
+        <div style="text-align:right;">
+            <input type="submit" class="btn btn-success" value="Guardar" />
+        </div>
+    </div>
+
+}

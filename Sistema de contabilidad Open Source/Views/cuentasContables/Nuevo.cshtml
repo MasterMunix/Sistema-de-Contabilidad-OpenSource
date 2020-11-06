@@ -1,0 +1,74 @@
+﻿@model Sistema_de_contabilidad_Open_Source.Models.ViewModels.cuentasContablesViewModel
+
+
+
+@{
+    ViewBag.Title = "Crear cuenta contable";
+}
+
+<h2>@ViewBag.Title</h2>
+
+
+@using (Html.BeginForm("Nuevo", "cuentasContables", FormMethod.Post))
+{<div class="row">
+     <div class="col-md-12">
+         <div>
+             @Html.LabelFor(d => d.descripcion)
+             @Html.TextBoxFor(d => d.descripcion, "", new { @class = "form-control" })
+             @Html.ValidationMessageFor(d => d.descripcion, null, new { @style = "color:red" })
+
+             <br />
+         </div>
+         <div>
+             @Html.LabelFor(d => d.tipoCuenta)
+             @Html.DropDownListFor(d => d.tipoCuenta, new SelectList(Model.lst1, "tipoCuentasID", "Descripcion"), "Seleccione el tipo de cuenta")
+             @Html.ValidationMessageFor(d => d.tipoCuenta, null, new { @style = "color:red" })
+
+         </div>
+         <br />
+         <div>
+             @Html.LabelFor(d => d.permiteTrans)
+             @Html.CheckBoxFor(d => d.permiteTrans)
+             @Html.ValidationMessageFor(d => d.permiteTrans, null, new { @style = "color:red" })
+
+         </div>
+
+         <br />
+         <div>
+             @Html.LabelFor(d => d.nivel)
+             @Html.TextBoxFor(d => d.nivel, "", new { @class = "form-control" })
+             @Html.ValidationMessageFor(d => d.nivel, null, new { @style = "color:red" })
+         </div>
+
+         <br />
+         <div>
+             @Html.LabelFor(d => d.cuentaMayor)
+             @Html.DropDownListFor(d => d.cuentaMayor, new SelectList(Model.lstCuentaMayor, "cuentasContablesID", "Descripcion"), "Seleccione el la cuenta mayor")
+             @Html.ValidationMessageFor(d => d.cuentaMayor, null, new { @style = "color:red" })
+         </div>
+
+         <br />
+         <div>
+             @Html.LabelFor(d => d.balance)
+             @Html.TextBoxFor(d => d.balance, "", new { @class = "form-control" })
+             @Html.ValidationMessageFor(d => d.balance, null, new { @style = "color:red" })
+
+
+         </div>
+
+         <br />
+         <div>
+             @Html.LabelFor(d => d.estado)
+             @Html.CheckBoxFor(d => d.estado)
+             @Html.ValidationMessageFor(d => d.estado, null, new { @style = "color:red" })
+
+             <br />
+         </div>
+
+
+         <div style="text-align:right;">
+             <input type="submit" class="btn btn-success" value="Guardar" />
+         </div>
+     </div>
+    </div>
+}

@@ -1,0 +1,55 @@
+﻿@model Sistema_de_contabilidad_Open_Source.Models.ViewModels.tipoCuentaViewModel
+@{
+    ViewBag.Title = "Crear tipo de cuenta";
+}
+
+<h2>@ViewBag.Title</h2>
+
+
+@using (Html.BeginForm("Nuevo", "tipoCuentas", FormMethod.Post))
+{ <div class="row">
+      <div class="col-md-12">
+          <div>
+              @Html.LabelFor(d => d.descripcion)
+              @Html.TextBoxFor(d => d.descripcion, "", new { @class = "form-control" })
+              @Html.ValidationMessageFor(d => d.descripcion, null, new {@style = "color:red" })
+              <br />
+          </div>
+          <div>
+              @Html.LabelFor(d => d.origen)
+              @* Crear el dropdown con Debito o Credito *@
+              @{
+                  List<SelectListItem> listItems = new List<SelectListItem>();
+                  listItems.Add(new SelectListItem
+                  {
+                      Text = "Debito",
+                      Value = "DB"
+                  });
+                  listItems.Add(new SelectListItem
+                  {
+                      Text = "Credito",
+                      Value = "CR",
+
+                  });
+              }
+              @* Fin del dropdown *@
+
+              @Html.DropDownListFor(d => d.origen, listItems, "Seleccione el origen", new { @class = "form-control" })
+              @Html.ValidationMessageFor(d => d.origen, null, new { @style = "color:red" })
+
+          </div>
+          <br />
+          <div>
+              @Html.LabelFor(d => d.estado)
+              @Html.CheckBoxFor(d => d.estado)
+              @Html.ValidationMessageFor(d => d.estado, null, new { @style = "color:red" })
+
+              <br />
+          </div>
+          </div>
+          <div style="text-align:right;">
+              <input type="submit" class="btn btn-success" value="Guardar" />
+          </div>
+      </div>
+
+}

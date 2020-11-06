@@ -1,0 +1,71 @@
+﻿@model List<Sistema_de_contabilidad_Open_Source.Models.ViewModels.ListcuentasContablesViewModel>
+@{
+    ViewBag.Title = "Cuentas contables";
+}
+
+<h2>@ViewBag.Title</h2>
+
+
+<div class="row" style="text-align: right; padding:5px;">
+    <a href="~/cuentasContables/Nuevo" class="btn btn-primary"> Nuevo </a>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table">
+
+            <tr>
+                <th>Descripcion</th>
+                <th>Tipo de cuenta</th>
+                <th>Permite transacciones</th>
+                <th>Nivel</th>
+                <th>Cuenta mayor</th>
+                <th>Balance</th>
+                <th>Estado</th>
+            </tr>
+            @foreach (var oElemento in Model)
+            {
+        <tr>
+            <td>@oElemento.descripcion</td>
+            @foreach (var valor in oElemento.lst1){
+
+                if (oElemento.tipoCuenta == valor.tipoCuentasID)
+                {
+                    <td>@valor.Descripcion</td>
+                }
+
+            }
+            @* Permite Transacciones *@
+            @if (@oElemento.permiteTrans == true)
+            {
+                <td style="color:green"> Si </td>
+            }
+            else
+            {
+                <td style="color:red"> No </td>
+            }
+            @* Nivel *@
+            <td>@oElemento.nivel</td>
+            @* Cuenta Mayor *@
+            <td>@oElemento.cuentaMayor</td>
+            @* Balance *@
+            <td>RD$ @oElemento.balance </td>
+            @* Estado *@
+            @if (@oElemento.estado == true)
+            {
+                <td style="color:green"> Activado </td>
+            }
+            else
+            {
+                <td style="color:red"> Desactivado </td>
+            }
+            <td>
+                <a href="/cuentasContables/Editar/@oElemento.ID" class="btn btn-warning"> Editar</a>
+                <a href="/cuentasContables/Eliminar/@oElemento.ID" class="btn btn-danger"> Eliminar</a>
+            </td>
+        </tr>
+            }
+        </table>
+
+    </div>
+
+</div>
