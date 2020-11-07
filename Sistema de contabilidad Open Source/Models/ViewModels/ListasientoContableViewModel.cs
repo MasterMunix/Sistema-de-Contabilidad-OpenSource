@@ -20,14 +20,20 @@ namespace Sistema_de_contabilidad_Open_Source.Models.ViewModels
         [NotMapped]
         public List<cuentasContables> lstCuentasContables { get; set; }
         //
+        
         public string tipoMovimiento { get; set; }
-        public DateTime fecha { get; set; }
+        public DateTime? fecha { get; set; }
         public double monto { get; set; }
         public bool estado { get; set; }
         public int tipoMoneda { get; set; }
         //
         [NotMapped]
         public List<tipoMonedas> lstTipoMoneda { get; set; }
+
+        //busqueda
+        [NotMapped]
+        public IQueryable busquedaAsientosContables { get; set; }
+        //
 
     }
 }

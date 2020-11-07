@@ -48,8 +48,8 @@ namespace Sistema_de_contabilidad_Open_Source.Controllers
             cuentasContablesViewModel model = new cuentasContablesViewModel();
             using (Segundo_Parcial_Integracion_con_Open_SourceEntities db = new Segundo_Parcial_Integracion_con_Open_SourceEntities())
             {
-                model.lst1 = db.tipoCuentas.ToList<tipoCuentas>();
-                model.lstCuentaMayor = db.cuentasContables.ToList<cuentasContables>();
+                model.lst1 = db.tipoCuentas.Where(s => s.estado == true).ToList<tipoCuentas>();
+                model.lstCuentaMayor = db.cuentasContables.Where(s => s.estado == true).ToList<cuentasContables>();
             }
 
             return View(model);
@@ -73,8 +73,15 @@ namespace Sistema_de_contabilidad_Open_Source.Controllers
                         ocuentasContables.Descripcion = model.descripcion;
                         ocuentasContables.tipoCuenta = model.tipoCuenta;
                         ocuentasContables.permiteTrans = model.permiteTrans;
+                        if (ocuentasContables.Descripcion == "Activos Fijos")
+                        {
+                            ocuentasContables.cuentaMayor = 0;
+                        }
+                        else
+                        {
+                            ocuentasContables.cuentaMayor = model.cuentaMayor;
+                        }
                         ocuentasContables.nivel = model.nivel;
-                        ocuentasContables.cuentaMayor = model.cuentaMayor;
                         ocuentasContables.balance = model.balance;
                         ocuentasContables.estado = model.estado;
                         
@@ -89,8 +96,8 @@ namespace Sistema_de_contabilidad_Open_Source.Controllers
                 //Esto carga nuevamente los dropdownlist para que no aparezca un error de nulo
                 using (Segundo_Parcial_Integracion_con_Open_SourceEntities db = new Segundo_Parcial_Integracion_con_Open_SourceEntities())
                 {
-                    model.lst1 = db.tipoCuentas.ToList<tipoCuentas>();
-                    model.lstCuentaMayor = db.cuentasContables.ToList<cuentasContables>();
+                    model.lst1 = db.tipoCuentas.Where(s => s.estado == true).ToList<tipoCuentas>();
+                    model.lstCuentaMayor = db.cuentasContables.Where(s => s.estado == true).ToList<cuentasContables>();
                 }
                 //
 
@@ -121,8 +128,8 @@ namespace Sistema_de_contabilidad_Open_Source.Controllers
                 model.estado = ocuentasContables.estado;
                 model.ID = ocuentasContables.cuentasContablesID;
                 //Esto carga nuevamente los dropdownlist para que no aparezca un error de nulo
-                model.lst1 = db.tipoCuentas.ToList<tipoCuentas>();
-                model.lstCuentaMayor = db.cuentasContables.ToList<cuentasContables>();
+                model.lst1 = db.tipoCuentas.Where(s => s.estado == true).ToList<tipoCuentas>();
+                model.lstCuentaMayor = db.cuentasContables.Where(s => s.estado == true).ToList<cuentasContables>();
                 //
             }
             return View(model);
@@ -159,8 +166,8 @@ namespace Sistema_de_contabilidad_Open_Source.Controllers
                 //Esto carga nuevamente los dropdownlist para que no aparezca un error de nulo
                 using (Segundo_Parcial_Integracion_con_Open_SourceEntities db = new Segundo_Parcial_Integracion_con_Open_SourceEntities())
                 {
-                    model.lst1 = db.tipoCuentas.ToList<tipoCuentas>();
-                    model.lstCuentaMayor = db.cuentasContables.ToList<cuentasContables>();
+                    model.lst1 = db.tipoCuentas.Where(s => s.estado == true).ToList<tipoCuentas>();
+                    model.lstCuentaMayor = db.cuentasContables.Where(s => s.estado == true).ToList<cuentasContables>();
                 }
                 //
                 return View(model);

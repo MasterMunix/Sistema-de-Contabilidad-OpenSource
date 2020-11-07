@@ -16,7 +16,7 @@ namespace Sistema_de_contabilidad_Open_Source
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "asientoContable", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

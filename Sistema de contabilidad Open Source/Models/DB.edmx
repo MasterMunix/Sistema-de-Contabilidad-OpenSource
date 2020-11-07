@@ -14,7 +14,7 @@
           <Property Name="identificadorAuxiliar" Type="int" Nullable="false" />
           <Property Name="cuenta" Type="int" Nullable="false" />
           <Property Name="tipoMovimiento" Type="char" MaxLength="2" Nullable="false" />
-          <Property Name="fecha" Type="datetime" Nullable="false" />
+          <Property Name="fecha" Type="datetime" />
           <Property Name="monto" Type="float" Nullable="false" />
           <Property Name="estado" Type="bit" Nullable="false" />
           <Property Name="tipoMoneda" Type="int" Nullable="false" />
@@ -68,7 +68,7 @@
           <Property Name="tasaCambiaria" Type="float" Nullable="false" />
           <Property Name="estado" Type="bit" Nullable="false" />
         </EntityType>
-        <Association Name="FK_asientoContable_cuentasAuxiliares">
+        <Association Name="FK_asientoContable_cuentasAuxiliares1">
           <End Role="cuentasAuxiliares" Type="Self.cuentasAuxiliares" Multiplicity="1" />
           <End Role="asientoContable" Type="Self.asientoContable" Multiplicity="*" />
           <ReferentialConstraint>
@@ -76,7 +76,7 @@
               <PropertyRef Name="cuentasAuxiliaresID" />
             </Principal>
             <Dependent Role="asientoContable">
-              <PropertyRef Name="cuenta" />
+              <PropertyRef Name="identificadorAuxiliar" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -123,7 +123,7 @@
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tipoCuentas" EntityType="Self.tipoCuentas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tipoMonedas" EntityType="Self.tipoMonedas" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_asientoContable_cuentasAuxiliares" Association="Self.FK_asientoContable_cuentasAuxiliares">
+          <AssociationSet Name="FK_asientoContable_cuentasAuxiliares1" Association="Self.FK_asientoContable_cuentasAuxiliares1">
             <End Role="cuentasAuxiliares" EntitySet="cuentasAuxiliares" />
             <End Role="asientoContable" EntitySet="asientoContable" />
           </AssociationSet>
@@ -153,13 +153,13 @@
           <Property Name="identificadorAuxiliar" Type="Int32" Nullable="false" />
           <Property Name="cuenta" Type="Int32" Nullable="false" />
           <Property Name="tipoMovimiento" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fecha" Type="DateTime" Precision="3" />
           <Property Name="monto" Type="Double" Nullable="false" />
           <Property Name="estado" Type="Boolean" Nullable="false" />
           <Property Name="tipoMoneda" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="cuentasAuxiliares" Relationship="Self.FK_asientoContable_cuentasAuxiliares" FromRole="asientoContable" ToRole="cuentasAuxiliares" />
           <NavigationProperty Name="cuentasContables" Relationship="Self.FK_asientoContable_cuentasContables" FromRole="asientoContable" ToRole="cuentasContables" />
           <NavigationProperty Name="tipoMonedas" Relationship="Self.FK_asientoContable_tipoMonedas" FromRole="asientoContable" ToRole="tipoMonedas" />
+          <NavigationProperty Name="cuentasAuxiliares1" Relationship="Model.FK_asientoContable_cuentasAuxiliares1" FromRole="asientoContable" ToRole="cuentasAuxiliares" />
         </EntityType>
         <EntityType Name="cuentasAuxiliares">
           <Key>
@@ -169,6 +169,7 @@
           <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="estado" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="asientoContable" Relationship="Self.FK_asientoContable_cuentasAuxiliares" FromRole="cuentasAuxiliares" ToRole="asientoContable" />
+          <NavigationProperty Name="asientoContable1" Relationship="Model.FK_asientoContable_cuentasAuxiliares1" FromRole="cuentasAuxiliares" ToRole="asientoContable" />
         </EntityType>
         <EntityType Name="cuentasContables">
           <Key>
@@ -286,7 +287,23 @@
             <End Role="tipoCuentas" EntitySet="tipoCuentas" />
             <End Role="cuentasContables" EntitySet="cuentasContables" />
           </AssociationSet>
+          <AssociationSet Name="FK_asientoContable_cuentasAuxiliares1" Association="Model.FK_asientoContable_cuentasAuxiliares1">
+            <End Role="cuentasAuxiliares" EntitySet="cuentasAuxiliares" />
+            <End Role="asientoContable" EntitySet="asientoContable" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_asientoContable_cuentasAuxiliares1">
+          <End Type="Model.cuentasAuxiliares" Role="cuentasAuxiliares" Multiplicity="1" />
+          <End Type="Model.asientoContable" Role="asientoContable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cuentasAuxiliares">
+              <PropertyRef Name="cuentasAuxiliaresID" />
+            </Principal>
+            <Dependent Role="asientoContable">
+              <PropertyRef Name="identificadorAuxiliar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

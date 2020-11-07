@@ -15,6 +15,7 @@
         <AssociationConnector Association="Model.FK_asientoContable_cuentasContables" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_asientoContable_tipoMonedas" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_cuentasContables_tipoCuentas" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_asientoContable_cuentasAuxiliares1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

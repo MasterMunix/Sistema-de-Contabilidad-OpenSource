@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Sistema_de_contabilidad_Open_Source.Models.ViewModels
 {
@@ -29,9 +31,10 @@ namespace Sistema_de_contabilidad_Open_Source.Models.ViewModels
         [StringLength(2)]
         [Display(Name = "Tipo de movimiento")]
         public string tipoMovimiento { get; set; }
-        [Required]
+        
         [Display(Name ="Fecha")]
-        public DateTime fecha { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:YYYY - MM - DD hh: mm:ss}")]
+        public DateTime? fecha { get; set; }
         [Required]
         [Range(0, double.MaxValue)]
         [Display(Name = "Monto")]

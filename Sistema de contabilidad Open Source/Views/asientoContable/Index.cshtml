@@ -10,6 +10,7 @@
     <a href="~/asientoContable/Nuevo" class="btn btn-primary"> Nuevo </a>
 </div>
 <div class="row">
+    
     <div class="col-md-12">
         <table class="table">
 
@@ -25,61 +26,61 @@
             </tr>
             @foreach (var oElemento in Model)
             {
-        <tr>
-            <td>@oElemento.descripcion</td>
-            @foreach (var valor in oElemento.lstCuentasAuxiliares)
-            {
+                <tr>
+                    <td>@oElemento.descripcion</td>
+                    @foreach (var valor in oElemento.lstCuentasAuxiliares)
+                    {
 
-                if (oElemento.identificadorAuxiliar == valor.cuentasAuxiliaresID)
-                {
-                    <td>@valor.descripcion</td>
-                }
+                        if (oElemento.identificadorAuxiliar == valor.cuentasAuxiliaresID)
+                        {
+                            <td>@valor.descripcion</td>
+                        }
 
-            }
-            @foreach (var valor in oElemento.lstCuentasContables)
-            {
+                    }
+                    @foreach (var valor in oElemento.lstCuentasContables)
+                    {
 
-                if (oElemento.cuenta == valor.cuentasContablesID)
-                {
-                    <td>@valor.Descripcion</td>
-                }
+                        if (oElemento.cuenta == valor.cuentasContablesID)
+                        {
+                            <td>@valor.Descripcion</td>
+                        }
 
-            }
+                    }
 
-            @if (@oElemento.tipoMovimiento == "CR")
-            {
-                <td> Crédito </td>
-            }
-            else
-            {
-                <td> Débito </td>
+                    @if (@oElemento.tipoMovimiento == "CR")
+                    {
+                        <td> Crédito </td>
+                    }
+                    else
+                    {
+                        <td> Débito </td>
 
-            }
-            <td>@oElemento.fecha</td>
-            <td>RD$ @oElemento.monto </td>
-            @foreach (var valor in oElemento.lstTipoMoneda)
-            {
+                    }
+                    <td>@oElemento.fecha</td>
+                    <td>RD$ @oElemento.monto </td>
+                    @foreach (var valor in oElemento.lstTipoMoneda)
+                    {
 
-                if (oElemento.tipoMoneda == valor.tipoMonedasID)
-                {
-                    <td>@valor.Descripcion , Cambio = RD$ @valor.tasaCambiaria</td>
-                }
+                        if (oElemento.tipoMoneda == valor.tipoMonedasID)
+                        {
+                            <td>@valor.Descripcion , Cambio = RD$ @valor.tasaCambiaria</td>
+                        }
 
-            }
-            <!---->
-            @if (@oElemento.estado == true)
-            {
-                <td style="color:green"> Activado </td>
-            }
-            else
-            {
-                <td style="color:red"> Desactivado </td>
-            }
-            <td>
-                <a href="/asientoContable/Editar/@oElemento.ID" class="btn btn-warning"> Editar</a>
-                <a href="/asientoContable/Eliminar/@oElemento.ID" class="btn btn-danger"> Eliminar</a>
-            </td>
-        </tr>
+                    }
+                    <!---->
+                    @if (@oElemento.estado == true)
+                    {
+                        <td style="color:green"> Activado </td>
+                    }
+                    else
+                    {
+                        <td style="color:red"> Desactivado </td>
+                    }
+                    <td>
+                        <a href="/asientoContable/Editar/@oElemento.ID" class="btn btn-warning"> Editar</a>
+                        <a href="/asientoContable/Eliminar/@oElemento.ID" class="btn btn-danger"> Eliminar</a>
+                    </td>
+                </tr>
             }
         </table>
 

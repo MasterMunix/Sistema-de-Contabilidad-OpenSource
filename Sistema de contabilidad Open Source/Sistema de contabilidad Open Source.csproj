@@ -453,6 +453,7 @@
     <Content Include="Views\cuentasContables\Editar.cshtml" />
     <Content Include="Views\asientoContable\Index.cshtml" />
     <Content Include="Views\asientoContable\Nuevo.cshtml" />
+    <Content Include="Views\asientoContable\Editar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

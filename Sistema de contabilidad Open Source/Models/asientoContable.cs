@@ -19,13 +19,13 @@ namespace Sistema_de_contabilidad_Open_Source.Models
         public int identificadorAuxiliar { get; set; }
         public int cuenta { get; set; }
         public string tipoMovimiento { get; set; }
-        public System.DateTime fecha { get; set; }
+        public Nullable<System.DateTime> fecha { get; set; }
         public double monto { get; set; }
         public bool estado { get; set; }
         public int tipoMoneda { get; set; }
     
-        public virtual cuentasAuxiliares cuentasAuxiliares { get; set; }
         public virtual cuentasContables cuentasContables { get; set; }
         public virtual tipoMonedas tipoMonedas { get; set; }
+        public virtual cuentasAuxiliares cuentasAuxiliares1 { get; set; }
     }
 }

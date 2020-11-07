@@ -18,6 +18,7 @@ namespace Sistema_de_contabilidad_Open_Source.Models
         public cuentasAuxiliares()
         {
             this.asientoContable = new HashSet<asientoContable>();
+            this.asientoContable1 = new HashSet<asientoContable>();
         }
     
         public int cuentasAuxiliaresID { get; set; }
@@ -26,5 +27,7 @@ namespace Sistema_de_contabilidad_Open_Source.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<asientoContable> asientoContable { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<asientoContable> asientoContable1 { get; set; }
     }
 }
